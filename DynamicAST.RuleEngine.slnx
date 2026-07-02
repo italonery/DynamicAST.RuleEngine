@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DynamicAST.RuleEngine.Tests/DynamicAST.RuleEngine.Tests.csproj" />
+  <Project Path="DynamicAST.RuleEngine/DynamicAST.RuleEngine.csproj" />
+</Solution>
