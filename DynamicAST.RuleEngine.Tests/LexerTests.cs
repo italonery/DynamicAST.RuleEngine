@@ -61,7 +61,7 @@ public class LexerTests
 
         var tokens = lexer.Tokenize();
 
-        Assert.Equal(5, tokens.Count);
+        Assert.Equal(6, tokens.Count);
         Assert.Equal(TokenType.OpenParenthesis, tokens[0].Type);
         Assert.Equal(TokenType.Identifier, tokens[1].Type);
         Assert.Equal(TokenType.GreaterThanOrEqual, tokens[2].Type);
