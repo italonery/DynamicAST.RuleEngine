@@ -4,10 +4,19 @@ using DynamicAST.RuleEngine.Lexing;
 
 namespace DynamicAST.RuleEngine.Compilation;
 
+/// <summary>
+/// Compiles an Abstract Syntax Tree (AST) into a high-performance, native C# delegate using LINQ Expressions.
+/// </summary>
 public class RuleCompiler
 {
     private static readonly ParameterExpression ContextParameter = Expression.Parameter(typeof(Dictionary<string, object>), "context");
 
+    /// <summary>
+    /// Translates the AST into Intermediate Language (IL) and compiles it into a runtime delegate.
+    /// </summary>
+    /// <param name="rootNode">The root node of the parsed expression tree.</param>
+    /// <returns>A compiled delegate that evaluates the rule against a dynamic dictionary context.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when the root expression does not evaluate to a boolean.</exception>
     public Func<Dictionary<string, object>, bool> CompileRule(ExpressionNode rootNode)
     {
         var body = BuildExpression(rootNode);

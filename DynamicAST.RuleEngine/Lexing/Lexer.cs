@@ -1,10 +1,21 @@
 namespace DynamicAST.RuleEngine.Lexing;
 
+/// <summary>
+/// A zero-allocation lexical analyzer that converts a raw string of logical rules into a sequence of tokens.
+/// </summary>
+/// <remarks>
+/// This struct uses <see cref="ReadOnlySpan{T}"/> to traverse the input string without allocating memory on the heap, 
+/// preventing Garbage Collector (GC) pressure.
+/// </remarks>
 public ref struct Lexer
 {
     private ReadOnlySpan<char> _text;
     private int _position;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Lexer"/> with the specified rule text.
+    /// </summary>
+    /// <param name="text">The raw string representation of the business rule (e.g., "age >= 18 AND score == 10").</param>
     public Lexer(string text)
     {
         _text = text.AsSpan();
@@ -18,6 +29,10 @@ public ref struct Lexer
         _position++;
     }
 
+    /// <summary>
+    /// Scans the input text and extracts a list of categorized tokens.
+    /// </summary>
+    /// <returns>A list of <see cref="Token"/> representing the logical operations and operands.</returns>
     public List<Token> Tokenize()
     {
         var tokens = new List<Token>();
